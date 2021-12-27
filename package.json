@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "tsnd --transpile-only src/server.ts"
+    "dev": "tsnd --transpile-only --exit-child --ignore-watch node_modules src/server.ts"
   },
   "keywords": [],
   "author": "",
