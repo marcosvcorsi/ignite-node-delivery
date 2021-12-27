@@ -1,7 +1,7 @@
-import { HashProvider } from "../../../../shared/providers/hash";
-import { Client } from "../../entities/client";
-import { ClientAlreadyExistsError } from "../../errors/client-already-exists";
-import { ClientRepository } from "../../repositories/client";
+import { HashProvider } from "../../../shared/providers/hash";
+import { Client } from "../entities/client";
+import { ClientAlreadyExistsError } from "../errors/client-already-exists";
+import { ClientRepository } from "../repositories/client";
 
 type Params = {
   username: string;

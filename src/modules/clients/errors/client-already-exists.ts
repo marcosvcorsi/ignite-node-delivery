@@ -1,4 +1,6 @@
-export class ClientAlreadyExistsError extends Error {
+import { ServerError } from "../../../shared/errors/server";
+
+export class ClientAlreadyExistsError extends ServerError {
   constructor() {
     super("Client already exists");
 
