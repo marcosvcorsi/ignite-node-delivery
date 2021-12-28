@@ -1,8 +1,8 @@
 import express from "express";
 import "express-async-errors";
 
-import { routes } from "./shared/http/routes";
-import { errorHandler } from "./shared/http/middlewares/error";
+import { routes } from "./shared/infra/http/routes";
+import { errorHandler } from "./shared/infra/http/middlewares/error";
 
 const app = express();
 app.use(express.json());

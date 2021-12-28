@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { Controller } from "../../../../shared/controllers";
-import { BcryptHashProvider } from "../../../../shared/providers/bcrypt";
+import { Controller } from "../../../../../shared/infra/http/controllers";
+import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
 import { PrismaClientRepository } from "../../repositories/prisma/client";
-import { CreateClientUseCase } from "../../use-cases/create-client";
+import { CreateClientUseCase } from "../../../use-cases/create-client";
 
 export class CreateClientController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

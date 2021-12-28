@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { jwtConfig } from "../../../../config/jwt";
-import { Controller } from "../../../../shared/controllers";
-import { BcryptHashProvider } from "../../../../shared/providers/bcrypt";
-import { JwtTokenProvider } from "../../../../shared/providers/jwt";
-import { PrismaClientRepository } from "../../../clients/repositories/prisma/client";
-import { AuthenticateClientUseCase } from "../../use-cases/authenticate-client";
+import { jwtConfig } from "../../../../../config/jwt";
+import { Controller } from "../../../../../shared/infra/http/controllers";
+import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
+import { JwtTokenProvider } from "../../../../../shared/infra/providers/jwt";
+import { PrismaClientRepository } from "../../../../clients/infra/repositories/prisma/client";
+import { AuthenticateClientUseCase } from "../../../use-cases/authenticate-client";
 
 export class AuthenticateClientController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

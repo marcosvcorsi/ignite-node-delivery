@@ -1,5 +1,5 @@
-import { PrismaRepository } from "../../../../shared/database/repositories/prisma";
-import { Client } from "../../entities/client";
+import { PrismaRepository } from "../../../../../shared/infra/database/repositories/prisma";
+import { Client } from "../../../entities/client";
 import { ClientRepository } from "../client";
 
 export class PrismaClientRepository

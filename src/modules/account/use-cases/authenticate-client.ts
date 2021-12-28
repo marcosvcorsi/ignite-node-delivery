@@ -1,7 +1,7 @@
-import { HashProvider } from "../../../shared/providers/hash";
-import { TokenProvider } from "../../../shared/providers/token";
+import { HashProvider } from "../../../shared/infra/providers/hash";
+import { TokenProvider } from "../../../shared/infra/providers/token";
 import { UseCase } from "../../../shared/use-cases";
-import { ClientRepository } from "../../clients/repositories/client";
+import { ClientRepository } from "../../clients/infra/repositories/client";
 import { UnauthorizedError } from "../errors/unauthorized";
 
 type Params = {
