@@ -7,7 +7,8 @@ import { PrismaDeliveriesRepository } from "../../database/prisma/deliveries";
 
 export class CreateDeliveryController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { clientId, itemName } = request.body;
+    const { clientId } = request;
+    const { itemName } = request.body;
 
     const createDeliveryUseCase = new CreateDeliveryUseCase(
       new PrismaClientRepository(),
@@ -16,7 +17,7 @@ export class CreateDeliveryController implements Controller {
 
     const delivery = await createDeliveryUseCase.execute({
       itemName,
-      clientId,
+      clientId: clientId!,
     });
 
     return response.status(201).json(delivery);

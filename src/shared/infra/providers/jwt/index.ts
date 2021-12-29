@@ -7,6 +7,10 @@ export class JwtTokenProvider implements TokenProvider {
     private readonly expiresIn = "1d"
   ) {}
 
+  async validate(token: string): Promise<any> {
+    return jwt.verify(token, this.secret);
+  }
+
   async generate({ payload, subject }: Params): Promise<string> {
     return jwt.sign(payload, this.secret, {
       subject,

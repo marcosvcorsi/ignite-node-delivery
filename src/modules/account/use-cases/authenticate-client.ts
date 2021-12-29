@@ -2,7 +2,7 @@ import { HashProvider } from "../../../shared/infra/providers/hash";
 import { TokenProvider } from "../../../shared/infra/providers/token";
 import { UseCase } from "../../../shared/use-cases";
 import { ClientRepository } from "../../clients/infra/repositories/client";
-import { UnauthorizedError } from "../errors/unauthorized";
+import { UnauthorizedError } from "../../../shared/infra/providers/unauthorized";
 
 type Params = {
   username: string;
@@ -27,7 +27,7 @@ export class AuthenticateClientUseCase implements UseCase<Params, Result> {
       !client ||
       !(await this.hashProvider.compare(password, client.password))
     ) {
-      throw new UnauthorizedError();
+      throw new UnauthorizedError("Username or password invalid!");
     }
 
     const { id } = client;

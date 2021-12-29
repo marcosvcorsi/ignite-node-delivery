@@ -5,4 +5,5 @@ export type Params = {
 
 export interface TokenProvider {
   generate(params: Params): Promise<string>;
+  validate(token: string): Promise<any>;
 }
