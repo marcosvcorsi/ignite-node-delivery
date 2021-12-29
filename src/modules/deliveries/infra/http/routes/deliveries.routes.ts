@@ -1,3 +1,4 @@
+import { ensureAuthenticatedDeliveryman } from "@/shared/infra/http/middlewares/ensureAuthenticatedDeliveryman";
 import { Router } from "express";
 import { ensureAuthenticatedClient } from "../../../../../shared/infra/http/middlewares/ensureAuthenticatedClient";
 import { CreateDeliveryController } from "../controllers/create-delivery";
@@ -15,6 +16,10 @@ deliveriesRouter.post(
   createDeliveryController.handle
 );
 
-deliveriesRouter.get("/", findAvailableDeliveriesController.handle);
+deliveriesRouter.get(
+  "/available",
+  ensureAuthenticatedDeliveryman,
+  findAvailableDeliveriesController.handle
+);
 
 export { deliveriesRouter };

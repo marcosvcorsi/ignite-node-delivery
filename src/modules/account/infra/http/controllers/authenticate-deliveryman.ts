@@ -13,7 +13,7 @@ export class AuthenticateDeliverymanController implements Controller {
     const authenticateDeliverymanUseCase = new AuthenticateDeliverymanUseCase(
       new PrismaDeliverymanRepository(),
       new BcryptHashProvider(),
-      new JwtTokenProvider(jwtConfig.secret)
+      new JwtTokenProvider(jwtConfig.deliverymanSecret)
     );
 
     const token = await authenticateDeliverymanUseCase.execute({

@@ -1,3 +1,4 @@
 export const jwtConfig = {
-  secret: String(process.env.JWT_SECRET),
+  clientSecret: String(process.env.JWT_CLIENT_SECRET),
+  deliverymanSecret: String(process.env.JWT_DELIVERYMAN_SECRET),
 };

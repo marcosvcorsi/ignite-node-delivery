@@ -7,7 +7,7 @@ type JwtPayload = {
   sub: string;
 };
 
-export async function ensureAuthenticatedClient(
+export async function ensureAuthenticatedDeliveryman(
   request: Request,
   response: Response,
   next: NextFunction
@@ -21,11 +21,11 @@ export async function ensureAuthenticatedClient(
   try {
     const [, token] = authHeader.split(" ");
 
-    const jwtTokenProvider = new JwtTokenProvider(jwtConfig.clientSecret);
+    const jwtTokenProvider = new JwtTokenProvider(jwtConfig.deliverymanSecret);
 
     const { sub } = (await jwtTokenProvider.validate(token)) as JwtPayload;
 
-    request.clientId = sub;
+    request.deliverymanId = sub;
 
     return next();
   } catch {

@@ -13,7 +13,7 @@ export class AuthenticateClientController implements Controller {
     const authenticateClientUseCase = new AuthenticateClientUseCase(
       new PrismaClientRepository(),
       new BcryptHashProvider(),
-      new JwtTokenProvider(jwtConfig.secret)
+      new JwtTokenProvider(jwtConfig.clientSecret)
     );
 
     const token = await authenticateClientUseCase.execute({
