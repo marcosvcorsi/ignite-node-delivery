@@ -6,6 +6,13 @@ export class PrismaClientRepository
   extends PrismaRepository
   implements ClientRepository
 {
+  async findById(id: string): Promise<Client | null> {
+    return this.prismaClient.clients.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
   async findByUsername(username: string): Promise<Client | null> {
     return this.prismaClient.clients.findFirst({
       where: {
