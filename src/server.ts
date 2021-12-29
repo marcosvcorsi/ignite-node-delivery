@@ -6,6 +6,7 @@ import "express-async-errors";
 
 import { routes } from "./shared/infra/http/routes";
 import { errorHandler } from "./shared/infra/http/middlewares/error";
+import { logger } from "./shared/utils/logger";
 
 const app = express();
 app.use(express.json());
@@ -16,4 +17,4 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => logger.info(`Server is running on port ${port}`));

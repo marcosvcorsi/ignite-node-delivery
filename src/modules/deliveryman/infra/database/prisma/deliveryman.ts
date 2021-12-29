@@ -6,6 +6,14 @@ export class PrismaDeliverymanRepository
   extends PrismaRepository
   implements DeliverymanRepository
 {
+  async findById(id: string): Promise<Deliveryman | null> {
+    return this.prismaClient.deliveryman.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
   async findByUsername(username: string): Promise<Deliveryman | null> {
     return this.prismaClient.deliveryman.findFirst({
       where: {
