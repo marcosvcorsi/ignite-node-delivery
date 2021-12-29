@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import "./config/module-alias";
+
 import express from "express";
 import "express-async-errors";
 

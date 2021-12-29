@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { jwtConfig } from "../../../../config/jwt";
-import { JwtTokenProvider } from "../../providers/jwt";
-import { UnauthorizedError } from "../../providers/unauthorized";
+import { jwtConfig } from "@/config/jwt";
+import { JwtTokenProvider } from "@/shared/infra/providers/jwt";
+import { UnauthorizedError } from "@/shared/infra/providers/unauthorized";
 
 type JwtPayload = {
   sub: string;
