@@ -3,7 +3,7 @@ import { jwtConfig } from "../../../../../config/jwt";
 import { Controller } from "../../../../../shared/infra/http/controllers";
 import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
 import { JwtTokenProvider } from "../../../../../shared/infra/providers/jwt";
-import { PrismaClientRepository } from "../../../../clients/infra/repositories/prisma/client";
+import { PrismaClientRepository } from "../../../../clients/infra/database/prisma/client";
 import { AuthenticateClientUseCase } from "../../../use-cases/authenticate-client";
 
 export class AuthenticateClientController implements Controller {

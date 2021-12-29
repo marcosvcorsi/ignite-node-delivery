@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Controller } from "../../../../../shared/infra/http/controllers";
 import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
 import { CreateDeliverymanUseCase } from "../../../use-cases/create-deliveryman";
-import { PrismaDeliverymanRepository } from "../../repositories/prisma/deliveryman";
+import { PrismaDeliverymanRepository } from "../../database/prisma/deliveryman";
 
 export class CreateDeliverymanController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

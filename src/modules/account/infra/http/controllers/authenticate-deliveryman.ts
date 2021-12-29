@@ -3,7 +3,7 @@ import { jwtConfig } from "../../../../../config/jwt";
 import { Controller } from "../../../../../shared/infra/http/controllers";
 import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
 import { JwtTokenProvider } from "../../../../../shared/infra/providers/jwt";
-import { PrismaDeliverymanRepository } from "../../../../deliveryman/infra/repositories/prisma/deliveryman";
+import { PrismaDeliverymanRepository } from "../../../../deliveryman/infra/database/prisma/deliveryman";
 import { AuthenticateDeliverymanUseCase } from "../../../use-cases/authenticate-deliveryman";
 
 export class AuthenticateDeliverymanController implements Controller {

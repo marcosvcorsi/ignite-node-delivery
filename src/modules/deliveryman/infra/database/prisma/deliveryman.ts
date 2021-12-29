@@ -1,6 +1,6 @@
 import { PrismaRepository } from "../../../../../shared/infra/database/repositories/prisma";
 import { Deliveryman } from "../../../entities/deliveryman";
-import { DeliverymanRepository } from "../deliveryman";
+import { DeliverymanRepository } from "../../repositories/deliveryman";
 
 export class PrismaDeliverymanRepository
   extends PrismaRepository

@@ -1,6 +1,6 @@
 import { PrismaRepository } from "../../../../../shared/infra/database/repositories/prisma";
 import { Client } from "../../../entities/client";
-import { ClientRepository } from "../client";
+import { ClientRepository } from "../../repositories/client";
 
 export class PrismaClientRepository
   extends PrismaRepository
