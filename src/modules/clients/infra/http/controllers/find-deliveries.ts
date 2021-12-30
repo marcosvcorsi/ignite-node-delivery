@@ -1,4 +1,4 @@
-import { FindClientDeliveriesUseCase } from "@/modules/clients/use-cases/find-client-deliveries";
+import { FindClientDeliveriesUseCase } from "@/modules/clients/use-cases/find-deliveries";
 import { Controller } from "@/shared/infra/http/controllers";
 import { Request } from "express";
 import { Response } from "express-serve-static-core";

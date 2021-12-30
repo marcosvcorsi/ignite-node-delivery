@@ -1,7 +1,7 @@
 import { ensureAuthenticatedClient } from "@/shared/infra/http/middlewares/ensureAuthenticatedClient";
 import { Router } from "express";
 import { CreateClientController } from "../controllers/create-client";
-import { FindClientDeliveriesController } from "../controllers/find-client-deliveries";
+import { FindClientDeliveriesController } from "../controllers/find-deliveries";
 
 const clientsRouter = Router();
 
