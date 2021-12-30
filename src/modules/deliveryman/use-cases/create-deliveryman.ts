@@ -1,3 +1,4 @@
+import { inject, injectable } from "tsyringe";
 import { HashProvider } from "../../../shared/infra/providers/hash";
 import { UseCase } from "../../../shared/use-cases";
 import { Deliveryman } from "../entities/deliveryman";
@@ -9,9 +10,12 @@ type Params = {
   password: string;
 };
 
+@injectable()
 export class CreateDeliverymanUseCase implements UseCase<Params, Deliveryman> {
   constructor(
+    @inject("DeliverymanRepository")
     private readonly deliverymanRepository: DeliverymanRepository,
+    @inject("HashProvider")
     private readonly hashProvider: HashProvider
   ) {}
 
