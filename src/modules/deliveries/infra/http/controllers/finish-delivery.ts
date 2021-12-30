@@ -2,6 +2,7 @@ import { FinishDeliveryUseCase } from "@/modules/deliveries/use-cases/finish-del
 import { PrismaDeliverymanRepository } from "@/modules/deliveryman/infra/database/prisma/deliveryman";
 import { Controller } from "@/shared/infra/http/controllers";
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { PrismaDeliveriesRepository } from "../../database/prisma/deliveries";
 
 export class FinishDeliveryController implements Controller {
@@ -9,10 +10,7 @@ export class FinishDeliveryController implements Controller {
     const { deliverymanId } = request;
     const { id } = request.params;
 
-    const finishDeliveryUseCase = new FinishDeliveryUseCase(
-      new PrismaDeliverymanRepository(),
-      new PrismaDeliveriesRepository()
-    );
+    const finishDeliveryUseCase = container.resolve(FinishDeliveryUseCase);
 
     await finishDeliveryUseCase.execute({
       id,

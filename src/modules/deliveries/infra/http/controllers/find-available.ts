@@ -1,12 +1,12 @@
 import { FindAvailableDeliveriesUseCase } from "@/modules/deliveries/use-cases/find-available";
 import { Controller } from "@/shared/infra/http/controllers";
 import { Request, Response } from "express";
-import { PrismaDeliveriesRepository } from "../../database/prisma/deliveries";
+import { container } from "tsyringe";
 
 export class FindAvailableDeliveriesController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
-    const findAvailableDeliveriesUseCase = new FindAvailableDeliveriesUseCase(
-      new PrismaDeliveriesRepository()
+    const findAvailableDeliveriesUseCase = container.resolve(
+      FindAvailableDeliveriesUseCase
     );
 
     const deliveries = await findAvailableDeliveriesUseCase.execute();

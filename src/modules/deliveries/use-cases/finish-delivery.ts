@@ -2,6 +2,7 @@ import { Deliveryman } from "@/modules/deliveryman/entities/deliveryman";
 import { DeliverymanRepository } from "@/modules/deliveryman/infra/repositories/deliveryman";
 import { NotFoundError } from "@/shared/errors/not-found";
 import { UseCase } from "@/shared/use-cases";
+import { inject, injectable } from "tsyringe";
 import { Delivery } from "../entities/delivery";
 import { DeliveriesRepository } from "../infra/repositories/deliveries";
 
@@ -10,9 +11,12 @@ type Params = {
   deliverymanId: string;
 };
 
+@injectable()
 export class FinishDeliveryUseCase implements UseCase<Params, void> {
   constructor(
+    @inject("DeliverymanRepository")
     private readonly deliverymanRepository: DeliverymanRepository,
+    @inject("DeliveriesRepository")
     private readonly deliveriesRepository: DeliveriesRepository
   ) {}
 

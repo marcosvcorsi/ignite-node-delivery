@@ -4,15 +4,19 @@ import { NotFoundError } from "@/shared/errors/not-found";
 import { UseCase } from "@/shared/use-cases";
 import { DeliveriesRepository } from "@/modules/deliveries/infra/repositories/deliveries";
 import { Delivery } from "../entities/delivery";
+import { inject, injectable } from "tsyringe";
 
 type Params = {
   id: string;
   deliverymanId: string;
 };
 
+@injectable()
 export class PickUpDeliveryUseCase implements UseCase<Params, Delivery> {
   constructor(
+    @inject("DeliverymanRepository")
     private readonly deliverymanRepository: DeliverymanRepository,
+    @inject("DeliveriesRepository")
     private readonly deliveriesRepository: DeliveriesRepository
   ) {}
 
@@ -27,6 +31,6 @@ export class PickUpDeliveryUseCase implements UseCase<Params, Delivery> {
 
     return this.deliveriesRepository.update(id, {
       deliveryman,
-    });
+    }) as Promise<Delivery>;
   }
 }
