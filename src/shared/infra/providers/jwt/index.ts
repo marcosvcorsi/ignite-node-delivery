@@ -1,10 +1,11 @@
-import jwt from "jsonwebtoken";
-import { TokenProvider, Params } from "../token";
+import jwt from 'jsonwebtoken';
+
+import { TokenProvider, Params } from '../token';
 
 export class JwtTokenProvider implements TokenProvider {
   constructor(
     private readonly secret: string,
-    private readonly expiresIn = "1d"
+    private readonly expiresIn = '1d',
   ) {}
 
   async validate(token: string): Promise<any> {

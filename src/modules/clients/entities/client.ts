@@ -1,4 +1,4 @@
-import { Delivery } from "@/modules/deliveries/entities/delivery";
+import { Delivery } from '@/modules/deliveries/entities/delivery';
 
 export class Client {
   id: string;

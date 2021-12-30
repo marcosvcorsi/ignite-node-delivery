@@ -1,10 +1,12 @@
-import { Deliveryman } from "@/modules/deliveryman/entities/deliveryman";
-import { DeliverymanRepository } from "@/modules/deliveryman/infra/repositories/deliveryman";
-import { NotFoundError } from "@/shared/errors/not-found";
-import { UseCase } from "@/shared/use-cases";
-import { DeliveriesRepository } from "@/modules/deliveries/infra/repositories/deliveries";
-import { Delivery } from "../entities/delivery";
-import { inject, injectable } from "tsyringe";
+import { inject, injectable } from 'tsyringe';
+
+import { DeliveriesRepository } from '@/modules/deliveries/infra/repositories/deliveries';
+import { Deliveryman } from '@/modules/deliveryman/entities/deliveryman';
+import { DeliverymanRepository } from '@/modules/deliveryman/infra/repositories/deliveryman';
+import { NotFoundError } from '@/shared/errors/not-found';
+import { UseCase } from '@/shared/use-cases';
+
+import { Delivery } from '../entities/delivery';
 
 type Params = {
   id: string;
@@ -14,15 +16,15 @@ type Params = {
 @injectable()
 export class PickUpDeliveryUseCase implements UseCase<Params, Delivery> {
   constructor(
-    @inject("DeliverymanRepository")
+    @inject('DeliverymanRepository')
     private readonly deliverymanRepository: DeliverymanRepository,
-    @inject("DeliveriesRepository")
-    private readonly deliveriesRepository: DeliveriesRepository
+    @inject('DeliveriesRepository')
+    private readonly deliveriesRepository: DeliveriesRepository,
   ) {}
 
   async execute({ id, deliverymanId }: Params): Promise<Delivery> {
     const deliveryman = await this.deliverymanRepository.findById(
-      deliverymanId
+      deliverymanId,
     );
 
     if (!deliveryman) {

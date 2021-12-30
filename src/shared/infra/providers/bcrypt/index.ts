@@ -1,5 +1,6 @@
-import bcrypt from "bcrypt";
-import { HashProvider } from "../hash";
+import bcrypt from 'bcrypt';
+
+import { HashProvider } from '../hash';
 
 export class BcryptHashProvider implements HashProvider {
   async generate(value: string): Promise<string> {

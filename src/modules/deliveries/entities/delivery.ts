@@ -1,5 +1,5 @@
-import { Client } from "../../clients/entities/client";
-import { Deliveryman } from "../../deliveryman/entities/deliveryman";
+import { Client } from '../../clients/entities/client';
+import { Deliveryman } from '../../deliveryman/entities/deliveryman';
 
 export class Delivery {
   id?: string;

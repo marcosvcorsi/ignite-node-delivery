@@ -1,9 +1,8 @@
-import { FinishDeliveryUseCase } from "@/modules/deliveries/use-cases/finish-delivery";
-import { PrismaDeliverymanRepository } from "@/modules/deliveryman/infra/database/prisma/deliveryman";
-import { Controller } from "@/shared/infra/http/controllers";
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { PrismaDeliveriesRepository } from "../../database/prisma/deliveries";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import { FinishDeliveryUseCase } from '@/modules/deliveries/use-cases/finish-delivery';
+import { Controller } from '@/shared/infra/http/controllers';
 
 export class FinishDeliveryController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

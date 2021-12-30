@@ -1,10 +1,12 @@
-import { ensureAuthenticatedDeliveryman } from "@/shared/infra/http/middlewares/ensureAuthenticatedDeliveryman";
-import { Router } from "express";
-import { ensureAuthenticatedClient } from "../../../../../shared/infra/http/middlewares/ensureAuthenticatedClient";
-import { CreateDeliveryController } from "../controllers/create-delivery";
-import { FindAvailableDeliveriesController } from "../controllers/find-available";
-import { FinishDeliveryController } from "../controllers/finish-delivery";
-import { PickUpDeliveryController } from "../controllers/pickup-delivery";
+import { Router } from 'express';
+
+import { ensureAuthenticatedDeliveryman } from '@/shared/infra/http/middlewares/ensureAuthenticatedDeliveryman';
+
+import { ensureAuthenticatedClient } from '../../../../../shared/infra/http/middlewares/ensureAuthenticatedClient';
+import { CreateDeliveryController } from '../controllers/create-delivery';
+import { FindAvailableDeliveriesController } from '../controllers/find-available';
+import { FinishDeliveryController } from '../controllers/finish-delivery';
+import { PickUpDeliveryController } from '../controllers/pickup-delivery';
 
 const deliveriesRouter = Router();
 
@@ -15,27 +17,27 @@ const pickUpDeliveryController = new PickUpDeliveryController();
 const finishDeliveryController = new FinishDeliveryController();
 
 deliveriesRouter.post(
-  "/",
+  '/',
   ensureAuthenticatedClient,
-  createDeliveryController.handle
+  createDeliveryController.handle,
 );
 
 deliveriesRouter.get(
-  "/available",
+  '/available',
   ensureAuthenticatedDeliveryman,
-  findAvailableDeliveriesController.handle
+  findAvailableDeliveriesController.handle,
 );
 
 deliveriesRouter.patch(
-  "/:id/pick-up",
+  '/:id/pick-up',
   ensureAuthenticatedDeliveryman,
-  pickUpDeliveryController.handle
+  pickUpDeliveryController.handle,
 );
 
 deliveriesRouter.patch(
-  "/:id/finish",
+  '/:id/finish',
   ensureAuthenticatedDeliveryman,
-  finishDeliveryController.handle
+  finishDeliveryController.handle,
 );
 
 export { deliveriesRouter };

@@ -1,7 +1,8 @@
-import { NextFunction, Request, Response } from "express";
-import { jwtConfig } from "@/config/jwt";
-import { JwtTokenProvider } from "@/shared/infra/providers/jwt";
-import { UnauthorizedError } from "@/shared/infra/providers/unauthorized";
+import { NextFunction, Request, Response } from 'express';
+
+import { jwtConfig } from '@/config/jwt';
+import { JwtTokenProvider } from '@/shared/infra/providers/jwt';
+import { UnauthorizedError } from '@/shared/infra/providers/unauthorized';
 
 type JwtPayload = {
   sub: string;
@@ -10,16 +11,16 @@ type JwtPayload = {
 export async function ensureAuthenticatedDeliveryman(
   request: Request,
   response: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new UnauthorizedError("Token is missing");
+    throw new UnauthorizedError('Token is missing');
   }
 
   try {
-    const [, token] = authHeader.split(" ");
+    const [, token] = authHeader.split(' ');
 
     const jwtTokenProvider = new JwtTokenProvider(jwtConfig.deliverymanSecret);
 
@@ -29,6 +30,6 @@ export async function ensureAuthenticatedDeliveryman(
 
     return next();
   } catch {
-    throw new UnauthorizedError("Invalid token");
+    throw new UnauthorizedError('Invalid token');
   }
 }

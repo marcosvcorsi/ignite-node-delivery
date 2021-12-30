@@ -1,6 +1,6 @@
-import { PrismaRepository } from "../../../../../shared/infra/database/repositories/prisma";
-import { Delivery } from "../../../entities/delivery";
-import { DeliveriesRepository } from "../../repositories/deliveries";
+import { PrismaRepository } from '../../../../../shared/infra/database/repositories/prisma';
+import { Delivery } from '../../../entities/delivery';
+import { DeliveriesRepository } from '../../repositories/deliveries';
 
 export class PrismaDeliveriesRepository
   extends PrismaRepository
@@ -8,7 +8,7 @@ export class PrismaDeliveriesRepository
 {
   async update(
     id: string,
-    { endAt, deliveryman }: Partial<Delivery>
+    { endAt, deliveryman }: Partial<Delivery>,
   ): Promise<Delivery | void> {
     const data = {};
     const where = { id };
@@ -49,7 +49,7 @@ export class PrismaDeliveriesRepository
     });
   }
 
-  async create({ itemName, client }: Omit<Delivery, "id">): Promise<Delivery> {
+  async create({ itemName, client }: Omit<Delivery, 'id'>): Promise<Delivery> {
     return this.prismaClient.deliveries.create({
       data: {
         itemName,

@@ -1,9 +1,10 @@
-import { HashProvider } from "../../../shared/infra/providers/hash";
-import { TokenProvider } from "../../../shared/infra/providers/token";
-import { UseCase } from "../../../shared/use-cases";
-import { DeliverymanRepository } from "../../deliveryman/infra/repositories/deliveryman";
-import { UnauthorizedError } from "../../../shared/infra/providers/unauthorized";
-import { inject, injectable } from "tsyringe";
+import { inject, injectable } from 'tsyringe';
+
+import { HashProvider } from '../../../shared/infra/providers/hash';
+import { TokenProvider } from '../../../shared/infra/providers/token';
+import { UnauthorizedError } from '../../../shared/infra/providers/unauthorized';
+import { UseCase } from '../../../shared/use-cases';
+import { DeliverymanRepository } from '../../deliveryman/infra/repositories/deliveryman';
 
 type Params = {
   username: string;
@@ -17,12 +18,12 @@ type Result = {
 @injectable()
 export class AuthenticateDeliverymanUseCase implements UseCase<Params, Result> {
   constructor(
-    @inject("DeliverymanRepository")
+    @inject('DeliverymanRepository')
     private readonly deliverymanRepository: DeliverymanRepository,
-    @inject("HashProvider")
+    @inject('HashProvider')
     private readonly hashProvider: HashProvider,
-    @inject("DeliverymanTokenProvider")
-    private readonly tokenProvider: TokenProvider
+    @inject('DeliverymanTokenProvider')
+    private readonly tokenProvider: TokenProvider,
   ) {}
 
   async execute({ username, password }: Params): Promise<Result> {
@@ -32,7 +33,7 @@ export class AuthenticateDeliverymanUseCase implements UseCase<Params, Result> {
       !client ||
       !(await this.hashProvider.compare(password, client.password))
     ) {
-      throw new UnauthorizedError("Username or password invalid!");
+      throw new UnauthorizedError('Username or password invalid!');
     }
 
     const { id } = client;

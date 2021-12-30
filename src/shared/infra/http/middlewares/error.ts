@@ -1,12 +1,14 @@
-import { logger } from "@/shared/utils/logger";
-import { NextFunction, Request, Response } from "express";
-import { ServerError } from "../../../errors/server";
+import { NextFunction, Request, Response } from 'express';
+
+import { logger } from '@/shared/utils/logger';
+
+import { ServerError } from '../../../errors/server';
 
 export const errorHandler = (
   error: Error,
   request: Request,
   response: Response,
-  _: NextFunction
+  _: NextFunction,
 ) => {
   if (error instanceof ServerError) {
     logger.warn(error);
@@ -16,5 +18,5 @@ export const errorHandler = (
 
   logger.error(error);
 
-  return response.status(500).json({ message: "Internal Server Error" });
+  return response.status(500).json({ message: 'Internal Server Error' });
 };

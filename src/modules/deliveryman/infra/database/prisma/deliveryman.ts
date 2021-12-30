@@ -1,6 +1,6 @@
-import { PrismaRepository } from "../../../../../shared/infra/database/repositories/prisma";
-import { Deliveryman } from "../../../entities/deliveryman";
-import { DeliverymanRepository } from "../../repositories/deliveryman";
+import { PrismaRepository } from '../../../../../shared/infra/database/repositories/prisma';
+import { Deliveryman } from '../../../entities/deliveryman';
+import { DeliverymanRepository } from '../../repositories/deliveryman';
 
 export class PrismaDeliverymanRepository
   extends PrismaRepository
@@ -30,13 +30,13 @@ export class PrismaDeliverymanRepository
       where: {
         username: {
           equals: username,
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       },
     });
   }
 
-  async create(data: Omit<Deliveryman, "id">): Promise<Deliveryman> {
+  async create(data: Omit<Deliveryman, 'id'>): Promise<Deliveryman> {
     return this.prismaClient.deliveryman.create({
       data,
     });

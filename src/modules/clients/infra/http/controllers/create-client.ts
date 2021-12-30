@@ -1,9 +1,8 @@
-import { Request, Response } from "express";
-import { Controller } from "../../../../../shared/infra/http/controllers";
-import { BcryptHashProvider } from "../../../../../shared/infra/providers/bcrypt";
-import { PrismaClientRepository } from "../../database/prisma/client";
-import { CreateClientUseCase } from "../../../use-cases/create-client";
-import { container } from "tsyringe";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import { Controller } from '../../../../../shared/infra/http/controllers';
+import { CreateClientUseCase } from '../../../use-cases/create-client';
 
 export class CreateClientController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

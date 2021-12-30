@@ -1,9 +1,11 @@
-import { Delivery } from "@/modules/deliveries/entities/delivery";
-import { NotFoundError } from "@/shared/errors/not-found";
-import { UseCase } from "@/shared/use-cases";
-import { inject, injectable } from "tsyringe";
-import { Deliveryman } from "../entities/deliveryman";
-import { DeliverymanRepository } from "../infra/repositories/deliveryman";
+import { inject, injectable } from 'tsyringe';
+
+import { Delivery } from '@/modules/deliveries/entities/delivery';
+import { NotFoundError } from '@/shared/errors/not-found';
+import { UseCase } from '@/shared/use-cases';
+
+import { Deliveryman } from '../entities/deliveryman';
+import { DeliverymanRepository } from '../infra/repositories/deliveryman';
 
 type Params = {
   deliverymanId: string;
@@ -14,8 +16,8 @@ export class FindDeliverymanDeliveriesUseCase
   implements UseCase<Params, Delivery[]>
 {
   constructor(
-    @inject("DeliverymanRepository")
-    private readonly deliverymanRepository: DeliverymanRepository
+    @inject('DeliverymanRepository')
+    private readonly deliverymanRepository: DeliverymanRepository,
   ) {}
 
   async execute({ deliverymanId }: Params): Promise<Delivery[]> {
