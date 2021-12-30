@@ -6,15 +6,27 @@ export class PrismaDeliveriesRepository
   extends PrismaRepository
   implements DeliveriesRepository
 {
-  async update(id: string, data: Partial<Delivery>): Promise<Delivery> {
+  async update(
+    id: string,
+    { endAt, deliveryman }: Partial<Delivery>
+  ): Promise<Delivery> {
+    const data = {};
+    const where = { id };
+
+    const deliverymanId = deliveryman?.id;
+
+    if (endAt) {
+      Object.assign(data, { endAt });
+      Object.assign(where, { deliverymanId });
+    }
+
+    if (deliveryman) {
+      Object.assign(data, { deliverymanId });
+    }
+
     return this.prismaClient.deliveries.update({
-      where: {
-        id,
-      },
-      data: {
-        deliverymanId: data.deliveryman!.id,
-        endAt: data.endAt,
-      },
+      where,
+      data,
     });
   }
 
