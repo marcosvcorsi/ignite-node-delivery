@@ -1,3 +1,4 @@
+import { jwtConfig } from "@/config/jwt";
 import { PrismaClientRepository } from "@/modules/clients/infra/database/prisma/client";
 import { ClientRepository } from "@/modules/clients/infra/repositories/client";
 import { PrismaDeliveriesRepository } from "@/modules/deliveries/infra/database/prisma/deliveries";
@@ -7,6 +8,8 @@ import { DeliverymanRepository } from "@/modules/deliveryman/infra/repositories/
 import { container } from "tsyringe";
 import { BcryptHashProvider } from "../infra/providers/bcrypt";
 import { HashProvider } from "../infra/providers/hash";
+import { JwtTokenProvider } from "../infra/providers/jwt";
+import { TokenProvider } from "../infra/providers/token";
 
 container.registerSingleton<ClientRepository>(
   "ClientRepository",
@@ -24,3 +27,13 @@ container.registerSingleton<DeliveriesRepository>(
 );
 
 container.registerSingleton<HashProvider>("HashProvider", BcryptHashProvider);
+
+container.registerInstance<TokenProvider>(
+  "ClientTokenProvider",
+  new JwtTokenProvider(jwtConfig.clientSecret)
+);
+
+container.registerInstance<TokenProvider>(
+  "DeliverymanTokenProvider",
+  new JwtTokenProvider(jwtConfig.deliverymanSecret)
+);

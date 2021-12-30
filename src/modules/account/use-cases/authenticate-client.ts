@@ -3,6 +3,7 @@ import { TokenProvider } from "../../../shared/infra/providers/token";
 import { UseCase } from "../../../shared/use-cases";
 import { ClientRepository } from "../../clients/infra/repositories/client";
 import { UnauthorizedError } from "../../../shared/infra/providers/unauthorized";
+import { inject, injectable } from "tsyringe";
 
 type Params = {
   username: string;
@@ -13,10 +14,14 @@ type Result = {
   token: string;
 };
 
+@injectable()
 export class AuthenticateClientUseCase implements UseCase<Params, Result> {
   constructor(
+    @inject("ClientRepository")
     private readonly clientRepository: ClientRepository,
+    @inject("HashProvider")
     private readonly hashProvider: HashProvider,
+    @inject("ClientTokenProvider")
     private readonly tokenProvider: TokenProvider
   ) {}
 
