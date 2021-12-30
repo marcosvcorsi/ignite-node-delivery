@@ -1,3 +1,4 @@
+import { inject, injectable } from "tsyringe";
 import { HashProvider } from "../../../shared/infra/providers/hash";
 import { UseCase } from "../../../shared/use-cases";
 import { Client } from "../entities/client";
@@ -9,9 +10,12 @@ type Params = {
   password: string;
 };
 
+@injectable()
 export class CreateClientUseCase implements UseCase<Params, Client> {
   constructor(
+    @inject("ClientRepository")
     private readonly clientRepository: ClientRepository,
+    @inject("HashProvider")
     private readonly hashProvider: HashProvider
   ) {}
 

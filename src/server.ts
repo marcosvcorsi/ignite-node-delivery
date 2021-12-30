@@ -4,6 +4,8 @@ import "./config/module-alias";
 import express from "express";
 import "express-async-errors";
 
+import "./shared/container";
+
 import { routes } from "./shared/infra/http/routes";
 import { errorHandler } from "./shared/infra/http/middlewares/error";
 import { logger } from "./shared/utils/logger";
