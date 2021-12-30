@@ -14,11 +14,11 @@ export class FinishDeliveryController implements Controller {
       new PrismaDeliveriesRepository()
     );
 
-    const delivery = await finishDeliveryUseCase.execute({
+    await finishDeliveryUseCase.execute({
       id,
       deliverymanId: deliverymanId!,
     });
 
-    return response.json(delivery);
+    return response.status(204).send();
   }
 }

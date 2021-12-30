@@ -10,13 +10,13 @@ type Params = {
   deliverymanId: string;
 };
 
-export class FinishDeliveryUseCase implements UseCase<Params, Delivery> {
+export class FinishDeliveryUseCase implements UseCase<Params, void> {
   constructor(
     private readonly deliverymanRepository: DeliverymanRepository,
     private readonly deliveriesRepository: DeliveriesRepository
   ) {}
 
-  async execute({ id, deliverymanId }: Params): Promise<Delivery> {
+  async execute({ id, deliverymanId }: Params): Promise<void> {
     const deliveryman = await this.deliverymanRepository.findById(
       deliverymanId
     );
@@ -25,7 +25,7 @@ export class FinishDeliveryUseCase implements UseCase<Params, Delivery> {
       throw new NotFoundError(Deliveryman.name);
     }
 
-    return this.deliveriesRepository.update(id, {
+    await this.deliveriesRepository.update(id, {
       endAt: new Date(),
       deliveryman,
     });

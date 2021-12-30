@@ -9,7 +9,7 @@ export class PrismaDeliveriesRepository
   async update(
     id: string,
     { endAt, deliveryman }: Partial<Delivery>
-  ): Promise<Delivery> {
+  ): Promise<Delivery | void> {
     const data = {};
     const where = { id };
 
@@ -18,16 +18,23 @@ export class PrismaDeliveriesRepository
     if (endAt) {
       Object.assign(data, { endAt });
       Object.assign(where, { deliverymanId });
+
+      await this.prismaClient.deliveries.updateMany({
+        where,
+        data,
+      });
+
+      return;
     }
 
     if (deliveryman) {
       Object.assign(data, { deliverymanId });
-    }
 
-    return this.prismaClient.deliveries.update({
-      where,
-      data,
-    });
+      return this.prismaClient.deliveries.update({
+        where,
+        data,
+      });
+    }
   }
 
   async findAvailable(): Promise<Delivery[]> {
