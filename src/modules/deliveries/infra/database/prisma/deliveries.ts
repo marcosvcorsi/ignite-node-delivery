@@ -22,6 +22,7 @@ export class PrismaDeliveriesRepository
     return this.prismaClient.deliveries.findMany({
       where: {
         endAt: null,
+        deliverymanId: null,
       },
       include: {
         client: true,
